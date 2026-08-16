@@ -1,0 +1,1032 @@
+{
+  "address": "6K1jwGGQBGZMYCe6zcxDN3LV46yANcQaTh2wf3c2gfBi",
+  "metadata": {
+    "name": "arch_locker",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "ArchLiquid-owned Solana liquidity asset locker"
+  },
+  "instructions": [
+    {
+      "name": "create_lock",
+      "discriminator": [
+        171,
+        216,
+        92,
+        167,
+        165,
+        8,
+        153,
+        90
+      ],
+      "accounts": [
+        {
+          "name": "depositor",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "beneficiary",
+          "signer": true
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "depositor_token_account",
+          "writable": true
+        },
+        {
+          "name": "beneficiary_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "beneficiary"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "lock",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  111,
+                  99,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "depositor"
+              },
+              {
+                "kind": "arg",
+                "path": "args.nonce"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "lock"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "CreateLockArgs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "extend_lock",
+      "discriminator": [
+        68,
+        151,
+        140,
+        144,
+        139,
+        122,
+        118,
+        170
+      ],
+      "accounts": [
+        {
+          "name": "beneficiary",
+          "signer": true,
+          "relations": [
+            "lock"
+          ]
+        },
+        {
+          "name": "lock",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  111,
+                  99,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "lock.depositor",
+                "account": "Lock"
+              },
+              {
+                "kind": "account",
+                "path": "lock.nonce",
+                "account": "Lock"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "new_unlock_at",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "make_permanent",
+      "discriminator": [
+        16,
+        195,
+        95,
+        226,
+        254,
+        222,
+        114,
+        240
+      ],
+      "accounts": [
+        {
+          "name": "beneficiary",
+          "signer": true,
+          "relations": [
+            "lock"
+          ]
+        },
+        {
+          "name": "lock",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  111,
+                  99,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "lock.depositor",
+                "account": "Lock"
+              },
+              {
+                "kind": "account",
+                "path": "lock.nonce",
+                "account": "Lock"
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "release_lock",
+      "discriminator": [
+        241,
+        251,
+        248,
+        8,
+        198,
+        190,
+        195,
+        6
+      ],
+      "accounts": [
+        {
+          "name": "releaser",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "beneficiary"
+        },
+        {
+          "name": "rent_recipient",
+          "writable": true
+        },
+        {
+          "name": "mint",
+          "relations": [
+            "lock"
+          ]
+        },
+        {
+          "name": "lock",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  111,
+                  99,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "lock.depositor",
+                "account": "Lock"
+              },
+              {
+                "kind": "account",
+                "path": "lock.nonce",
+                "account": "Lock"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "lock"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          },
+          "relations": [
+            "lock"
+          ]
+        },
+        {
+          "name": "beneficiary_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "beneficiary"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Lock",
+      "discriminator": [
+        8,
+        255,
+        36,
+        202,
+        210,
+        22,
+        57,
+        137
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "LockCreated",
+      "discriminator": [
+        244,
+        216,
+        59,
+        77,
+        83,
+        47,
+        61,
+        196
+      ]
+    },
+    {
+      "name": "LockExtended",
+      "discriminator": [
+        25,
+        118,
+        227,
+        150,
+        119,
+        138,
+        207,
+        234
+      ]
+    },
+    {
+      "name": "LockMadePermanent",
+      "discriminator": [
+        195,
+        135,
+        14,
+        172,
+        60,
+        80,
+        64,
+        161
+      ]
+    },
+    {
+      "name": "LockReleased",
+      "discriminator": [
+        188,
+        240,
+        15,
+        169,
+        219,
+        184,
+        26,
+        111
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "ZeroAmount",
+      "msg": "lock amount must be nonzero"
+    },
+    {
+      "code": 6001,
+      "name": "DefaultBeneficiary",
+      "msg": "beneficiary cannot be the default public key"
+    },
+    {
+      "code": 6002,
+      "name": "LockDurationTooShort",
+      "msg": "timed lock duration is below the 30-day minimum"
+    },
+    {
+      "code": 6003,
+      "name": "InvalidPermanentUnlockTime",
+      "msg": "permanent locks must use an unlock timestamp of zero"
+    },
+    {
+      "code": 6004,
+      "name": "MathOverflow",
+      "msg": "checked arithmetic overflow"
+    },
+    {
+      "code": 6005,
+      "name": "UnexpectedVaultDelta",
+      "msg": "legacy SPL token transfer produced an unexpected vault delta"
+    },
+    {
+      "code": 6006,
+      "name": "ActiveFreezeAuthority",
+      "msg": "mint freeze authority must be revoked before locking"
+    },
+    {
+      "code": 6007,
+      "name": "FrozenSourceAccount",
+      "msg": "depositor token account is frozen"
+    },
+    {
+      "code": 6008,
+      "name": "FrozenBeneficiaryAccount",
+      "msg": "beneficiary token account is frozen"
+    },
+    {
+      "code": 6009,
+      "name": "WrongBeneficiary",
+      "msg": "beneficiary does not match the immutable lock beneficiary"
+    },
+    {
+      "code": 6010,
+      "name": "WrongRentRecipient",
+      "msg": "rent recipient does not match the original depositor"
+    },
+    {
+      "code": 6011,
+      "name": "WrongMint",
+      "msg": "mint does not match the locked asset"
+    },
+    {
+      "code": 6012,
+      "name": "WrongVault",
+      "msg": "vault does not match the lock"
+    },
+    {
+      "code": 6013,
+      "name": "WrongTokenProgram",
+      "msg": "token program does not match the lock"
+    },
+    {
+      "code": 6014,
+      "name": "PermanentLock",
+      "msg": "permanent locks cannot be extended or released"
+    },
+    {
+      "code": 6015,
+      "name": "LockCannotBeShortened",
+      "msg": "a timed lock cannot be shortened"
+    },
+    {
+      "code": 6016,
+      "name": "LockNotMature",
+      "msg": "lock has not reached its unlock timestamp"
+    },
+    {
+      "code": 6017,
+      "name": "EmptyVault",
+      "msg": "lock vault is empty"
+    }
+  ],
+  "types": [
+    {
+      "name": "CreateLockArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "nonce",
+            "type": "u64"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "mode",
+            "type": {
+              "defined": {
+                "name": "LockMode"
+              }
+            }
+          },
+          {
+            "name": "unlock_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Lock",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "schema_version",
+            "type": "u8"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "mode",
+            "type": {
+              "defined": {
+                "name": "LockMode"
+              }
+            }
+          },
+          {
+            "name": "depositor",
+            "type": "pubkey"
+          },
+          {
+            "name": "beneficiary",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "token_program",
+            "type": "pubkey"
+          },
+          {
+            "name": "nonce",
+            "type": "u64"
+          },
+          {
+            "name": "principal_amount",
+            "type": "u64"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "unlock_at",
+            "type": "i64"
+          },
+          {
+            "name": "reserved",
+            "type": {
+              "array": [
+                "u8",
+                64
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "LockCreated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "lock",
+            "type": "pubkey"
+          },
+          {
+            "name": "depositor",
+            "type": "pubkey"
+          },
+          {
+            "name": "beneficiary",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "nonce",
+            "type": "u64"
+          },
+          {
+            "name": "principal_amount",
+            "type": "u64"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "unlock_at",
+            "type": "i64"
+          },
+          {
+            "name": "mode",
+            "type": {
+              "defined": {
+                "name": "LockMode"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "LockExtended",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "lock",
+            "type": "pubkey"
+          },
+          {
+            "name": "beneficiary",
+            "type": "pubkey"
+          },
+          {
+            "name": "new_unlock_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LockMadePermanent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "lock",
+            "type": "pubkey"
+          },
+          {
+            "name": "beneficiary",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LockMode",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Timed"
+          },
+          {
+            "name": "Permanent"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LockReleased",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "lock",
+            "type": "pubkey"
+          },
+          {
+            "name": "releaser",
+            "type": "pubkey"
+          },
+          {
+            "name": "depositor",
+            "type": "pubkey"
+          },
+          {
+            "name": "beneficiary",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "principal_amount",
+            "type": "u64"
+          },
+          {
+            "name": "released_amount",
+            "type": "u64"
+          },
+          {
+            "name": "released_at",
+            "type": "i64"
+          }
+        ]
+      }
+    }
+  ]
+}

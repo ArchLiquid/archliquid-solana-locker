@@ -1,0 +1,17 @@
+[toolchain]
+anchor_version = "1.0.2"
+solana_version = "3.1.10"
+
+[features]
+seeds = false
+skip-lint = false
+
+[programs.localnet]
+arch_locker = "6K1jwGGQBGZMYCe6zcxDN3LV46yANcQaTh2wf3c2gfBi"
+
+[programs.devnet]
+arch_locker = "6K1jwGGQBGZMYCe6zcxDN3LV46yANcQaTh2wf3c2gfBi"
+
+[provider]
+cluster = "Localnet"
+wallet = "~/.config/solana/id.json"

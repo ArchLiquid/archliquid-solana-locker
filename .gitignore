@@ -1,0 +1,6 @@
+.anchor/
+target/
+test-ledger/
+*.keypair.json
+*.pem
+.env
