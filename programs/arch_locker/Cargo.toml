@@ -44,7 +44,7 @@ solana-program-option = "3"
 solana-program-pack = "3"
 solana-signer = "3"
 solana-transaction = "3"
-spl-token-interface = "2"
+spl-token-interface = "3"
 
 [lints]
 workspace = true
