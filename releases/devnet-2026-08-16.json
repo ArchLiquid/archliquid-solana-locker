@@ -69,7 +69,7 @@
     },
     {
       "path": "programs/arch_locker/tests/litesvm.rs",
-      "sha256": "ac6400ab05058cd1c25a10ad46ecabbbe6620014a8d0a491694f4c97f98e6778"
+      "sha256": "64f98556580f2954e9d5fc24bb20ebf13ecd55d7353cfbf9045f4f57357f4c0a"
     },
     {
       "path": "README.md",

@@ -39,8 +39,18 @@ fn install_mint_with_freeze_authority(
     decimals: u8,
     freeze_authority: COption<Pubkey>,
 ) {
+    install_mint_with_authorities(svm, mint_address, decimals, COption::None, freeze_authority);
+}
+
+fn install_mint_with_authorities(
+    svm: &mut LiteSVM,
+    mint_address: Pubkey,
+    decimals: u8,
+    mint_authority: COption<Pubkey>,
+    freeze_authority: COption<Pubkey>,
+) {
     let mint = SplMint {
-        mint_authority: COption::None,
+        mint_authority,
         supply: 10_000_000_000,
         decimals,
         is_initialized: true,
@@ -59,6 +69,72 @@ fn install_mint_with_freeze_authority(
         },
     )
     .unwrap();
+}
+
+#[test]
+fn arch_swap_style_lp_tokens_can_be_locked_and_released() {
+    let mut svm = new_vm();
+    let provider = Keypair::new();
+    let releaser = Keypair::new();
+    svm.airdrop(&provider.pubkey(), 10_000_000_000).unwrap();
+    svm.airdrop(&releaser.pubkey(), 10_000_000_000).unwrap();
+
+    let pool = key(28);
+    let lp_mint = key(29);
+    let provider_lp = key(30);
+    let amount = 9_000_000_000;
+    let nonce = 8;
+    install_mint_with_authorities(&mut svm, lp_mint, 9, COption::Some(pool), COption::None);
+    install_token_account(&mut svm, provider_lp, lp_mint, provider.pubkey(), amount);
+
+    let now = 10_000;
+    let unlock_at = now + MIN_LOCK_DURATION_SECONDS;
+    set_time(&mut svm, now);
+    send(
+        &mut svm,
+        &provider,
+        &[&provider],
+        create_lock_instruction(
+            provider.pubkey(),
+            provider.pubkey(),
+            lp_mint,
+            provider_lp,
+            CreateLockArgs {
+                nonce,
+                amount,
+                mode: LockMode::Timed,
+                unlock_at,
+            },
+        ),
+    )
+    .unwrap();
+    let lock = lock_pda(provider.pubkey(), nonce);
+    let vault = get_associated_token_address(&lock, &lp_mint);
+    assert_eq!(read_lock(&svm, lock).principal_amount, amount);
+    assert_eq!(token_amount(&svm, vault), amount);
+
+    set_time(&mut svm, unlock_at);
+    svm.expire_blockhash();
+    send(
+        &mut svm,
+        &releaser,
+        &[&releaser],
+        release_lock_instruction(
+            releaser.pubkey(),
+            provider.pubkey(),
+            provider.pubkey(),
+            lp_mint,
+            nonce,
+        ),
+    )
+    .unwrap();
+    assert_eq!(
+        token_amount(
+            &svm,
+            get_associated_token_address(&provider.pubkey(), &lp_mint)
+        ),
+        amount
+    );
 }
 
 fn install_token_account(
