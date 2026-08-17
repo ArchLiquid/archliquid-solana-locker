@@ -24,7 +24,7 @@ anchor-attribute-program = "=1.0.2"
 anchor-derive-accounts = "=1.0.2"
 anchor-derive-serde = "=1.0.2"
 anchor-derive-space = "=1.0.2"
-anchor-syn = "=1.0.2"
+anchor-syn = "=1.1.2"
 
 [workspace.lints.rust]
 unexpected_cfgs = { level = "warn", check-cfg = [
