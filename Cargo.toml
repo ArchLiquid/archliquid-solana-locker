@@ -15,7 +15,7 @@ codegen-units = 1
 [workspace.dependencies]
 anchor-lang = { version = "=1.0.2", features = ["init-if-needed"] }
 anchor-spl = { version = "=1.0.2", default-features = false, features = ["associated_token", "metadata", "token", "token_2022", "token_2022_extensions"] }
-anchor-attribute-access-control = "=1.0.2"
+anchor-attribute-access-control = "=1.1.2"
 anchor-attribute-account = "=1.0.2"
 anchor-attribute-constant = "=1.0.2"
 anchor-attribute-error = "=1.0.2"
