@@ -8,12 +8,12 @@ or real-value custody.
 
 ## Devnet release
 
-- Program: `6K1jwGGQBGZMYCe6zcxDN3LV46yANcQaTh2wf3c2gfBi`
+- Program: `2jDqQUZY7yidwa8DTQm6vyFcptFPZ4QhxJn5ePGpgd2p`
 - Executable SHA-256:
-  `a6a49b36e25189f2a076c18c32eb45658b86f50294633d98f62ed8d742374349`
+  `effd9de765f2bbb66f3f01ea9bb767304981891ceb30b8ce4f063e326e8e5b03`
 - Upgrade authority: revoked
 - Explorer:
-  <https://explorer.solana.com/address/6K1jwGGQBGZMYCe6zcxDN3LV46yANcQaTh2wf3c2gfBi?cluster=devnet>
+  <https://explorer.solana.com/address/2jDqQUZY7yidwa8DTQm6vyFcptFPZ4QhxJn5ePGpgd2p?cluster=devnet>
 
 ## Supported assets
 

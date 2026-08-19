@@ -9,7 +9,7 @@ use anchor_spl::{
     },
 };
 
-declare_id!("6K1jwGGQBGZMYCe6zcxDN3LV46yANcQaTh2wf3c2gfBi");
+declare_id!("2jDqQUZY7yidwa8DTQm6vyFcptFPZ4QhxJn5ePGpgd2p");
 
 const LOCK_SEED: &[u8] = b"lock";
 const CURRENT_SCHEMA_VERSION: u8 = 1;

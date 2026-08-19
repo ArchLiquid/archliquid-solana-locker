@@ -7,10 +7,10 @@ seeds = false
 skip-lint = false
 
 [programs.localnet]
-arch_locker = "6K1jwGGQBGZMYCe6zcxDN3LV46yANcQaTh2wf3c2gfBi"
+arch_locker = "2jDqQUZY7yidwa8DTQm6vyFcptFPZ4QhxJn5ePGpgd2p"
 
 [programs.devnet]
-arch_locker = "6K1jwGGQBGZMYCe6zcxDN3LV46yANcQaTh2wf3c2gfBi"
+arch_locker = "2jDqQUZY7yidwa8DTQm6vyFcptFPZ4QhxJn5ePGpgd2p"
 
 [provider]
 cluster = "Localnet"
