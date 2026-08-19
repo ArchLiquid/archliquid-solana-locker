@@ -5,12 +5,12 @@ import { fileURLToPath } from "node:url";
 
 const scriptPath = fileURLToPath(import.meta.url);
 const repositoryRoot = realpathSync(join(dirname(scriptPath), ".."));
-const defaultManifest = join(repositoryRoot, "releases/devnet-2026-08-16.json");
-const programId = "6K1jwGGQBGZMYCe6zcxDN3LV46yANcQaTh2wf3c2gfBi";
+const defaultManifest = join(repositoryRoot, "releases/devnet-2026-08-19-r8.json");
+const programId = "2jDqQUZY7yidwa8DTQm6vyFcptFPZ4QhxJn5ePGpgd2p";
 const executableSha256 =
-  "a6a49b36e25189f2a076c18c32eb45658b86f50294633d98f62ed8d742374349";
+  "effd9de765f2bbb66f3f01ea9bb767304981891ceb30b8ce4f063e326e8e5b03";
 const idlSha256 =
-  "7a85db8b97aa37142c95dc971300d2094b4a4aaa405287fba9da16d4c8440070";
+  "8eee74c0f3802b269d159bd78b8acab7781bf50500424364ccfd77e6db3d5f52";
 
 function fail(message) {
   throw new Error(message);
@@ -53,6 +53,8 @@ export function verifyRelease(manifestPath = defaultManifest) {
   exact(manifest.externalAuditClaimed, false, "externalAuditClaimed");
   exact(manifest.program.programId, programId, "program ID");
   exact(manifest.program.upgradeAuthority, null, "upgrade authority");
+  exact(manifest.program.programDataAuthorityOption, 0, "ProgramData authority option");
+  exact(manifest.program.finalizationFinalized, true, "finalization status");
   exact(manifest.program.executableSha256, executableSha256, "executable SHA-256");
   exact(manifest.program.idlSha256, idlSha256, "IDL SHA-256");
 

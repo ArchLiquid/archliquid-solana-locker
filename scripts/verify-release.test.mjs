@@ -6,11 +6,11 @@ import test from "node:test";
 
 import { verifyRelease } from "./verify-release.mjs";
 
-const releasePath = new URL("../releases/devnet-2026-08-16.json", import.meta.url);
+const releasePath = new URL("../releases/devnet-2026-08-19-r8.json", import.meta.url);
 
 test("verifies the immutable devnet release", () => {
   const result = verifyRelease();
-  assert.equal(result.programId, "6K1jwGGQBGZMYCe6zcxDN3LV46yANcQaTh2wf3c2gfBi");
+  assert.equal(result.programId, "2jDqQUZY7yidwa8DTQm6vyFcptFPZ4QhxJn5ePGpgd2p");
 });
 
 test("rejects tampered release identity", () => {

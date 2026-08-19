@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "status": "immutable-devnet-release",
+  "qualityStandard": "production",
+  "mainnetApproved": false,
+  "realValueCustodyApproved": false,
+  "externalAuditClaimed": false,
+  "cluster": {
+    "name": "devnet",
+    "genesisHash": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG"
+  },
+  "program": {
+    "programId": "2jDqQUZY7yidwa8DTQm6vyFcptFPZ4QhxJn5ePGpgd2p",
+    "programData": "FDzFf2oHxUcrkm9CG5ThgpVfEdyiWEeKAU13t76FkMR1",
+    "loader": "BPFLoaderUpgradeab1e11111111111111111111111",
+    "upgradeAuthority": null,
+    "programDataAuthorityOption": 0,
+    "executableSha256": "effd9de765f2bbb66f3f01ea9bb767304981891ceb30b8ce4f063e326e8e5b03",
+    "idlSha256": "8eee74c0f3802b269d159bd78b8acab7781bf50500424364ccfd77e6db3d5f52",
+    "executableBytes": 243928,
+    "allocatedBytes": 243928,
+    "lastDeployedSlot": 485286631,
+    "finalizationSlot": 485301191,
+    "deploymentSignature": "3dyYme9qWYJa96ZLQzwSi8PDsY6fw8VH3WRv8Rx5Bd9iUwj569VQhtGUGBGvUwboeWpVyt6hVmhEpjm3RizidFE8",
+    "finalizationSignature": "2aFzU3BAZw9MeYgN44wXQ4n5FbypueWLDh7kowKwMKjQxTrTb5pHJ4HgWivyjnzemZHQNHYp2wwR32xX9TAarLLw",
+    "finalizationFinalized": true
+  },
+  "build": {
+    "image": "solanafoundation/solana-verifiable-build@sha256:f71be5ca7620b7e40933b7f1294fa44e01d08c1fc5ba1f375a2478f5a01580d3",
+    "solana": "3.1.10",
+    "anchor": "1.0.2",
+    "twoIndependentBuildsMatched": true
+  },
+  "lifecycle": {
+    "allSuccessfulTransactionsFinalized": true,
+    "curveMigrationLock": "4YMctYRmPekc34Xkxesd1n9iCvMgwmbkVeCf3gR7beVx",
+    "permanentCreate": "4XZQLXqk1Hzkx5JfaeMs7EgzgSHTLPkpCTWmkmgHLXZb9bK6uX2mXqQNYpjEsKoJynjt7ZsXDEYLw3vCZv2cudHo",
+    "permanentReleaseRejected": true,
+    "substitutedAccountsRejectedAtomically": true
+  },
+  "sourceInputs": [
+    { "path": "Cargo.toml", "sha256": "3fe3ee776d4af4cf8077435759e06ae9d1bb762fa866430ca62c601b080e0a10" },
+    { "path": "Cargo.lock", "sha256": "90a6fec33641286e36321b3382ae0b133dec9a1fd7f02613df61eda495c426cd" },
+    { "path": "Anchor.toml", "sha256": "e94915d9cf5b92438a5d0b3de9571105d13fd61dab81dca23f27209f9f5ff926" },
+    { "path": "rust-toolchain.toml", "sha256": "48a0125e2d9b0115ac7670f8f22afe6fab1357922b3d7fa0db3da2e26e61ebb8" },
+    { "path": "programs/arch_locker/Cargo.toml", "sha256": "4646a634b9ee123b9807f6f1e620732959037791a6935d596241ab5c87407225" },
+    { "path": "programs/arch_locker/src/lib.rs", "sha256": "ba3e0b1873bdff8608b2db24eefe4f31560d0f393ec71129b3db482f1cc69921" },
+    { "path": "programs/arch_locker/tests/litesvm.rs", "sha256": "64f98556580f2954e9d5fc24bb20ebf13ecd55d7353cfbf9045f4f57357f4c0a" },
+    { "path": "README.md", "sha256": "7249633cea201139b6d169c1bebaf099159a776acd87644346e5d87955af1677" },
+    { "path": "programs/arch_locker/README.md", "sha256": "7249633cea201139b6d169c1bebaf099159a776acd87644346e5d87955af1677" },
+    { "path": "SECURITY.md", "sha256": "99991396e52d4b71b8784fdedaec6be80828a0616fc051b750019a3241b229b5" },
+    { "path": "DEPENDENCY_AUDIT.md", "sha256": "a3279b6f9a615cd7ff8ffddc6d13d439578e443a706d73326376d07a3e9d4050" },
+    { "path": "LICENSE", "sha256": "dcf31e10b03c1d784868cdb5454d2228a16366c177393ccdff4499b8ee8cbc55" },
+    { "path": ".github/workflows/ci.yml", "sha256": "5fe8d071d0938c6bcc4497b8815a01dd9b2d7698bd02ec349e6510ea47b7e738" },
+    { "path": ".github/dependabot.yml", "sha256": "db76b8360b5460ae333e00659f7ff11dd62359cb6edf1b8bb493e21103e5f459" },
+    { "path": "scripts/verify-release.mjs", "sha256": "cb171de53dde1cf2f5d29e12e2ed71d6ac5d6d7f12e21a0a45144ed4c9f4e3ce" },
+    { "path": "scripts/verify-release.test.mjs", "sha256": "a92c848d0306e4f67b9ef6e5ee5ba1511623d1e2fde3f6979741ffb1b88719f3" }
+  ],
+  "idl": {
+    "path": "idl/arch_locker.json",
+    "sha256": "8eee74c0f3802b269d159bd78b8acab7781bf50500424364ccfd77e6db3d5f52"
+  }
+}
