@@ -6,6 +6,11 @@ import { fileURLToPath } from "node:url";
 const scriptPath = fileURLToPath(import.meta.url);
 const repositoryRoot = realpathSync(join(dirname(scriptPath), ".."));
 const defaultManifest = join(repositoryRoot, "releases/devnet-2026-08-19-r8.json");
+const operationalSnapshots = new Map([
+  [".github/dependabot.yml", "releases/devnet-2026-08-19-r8/operations/.github/dependabot.yml"],
+  ["scripts/verify-release.mjs", "releases/devnet-2026-08-19-r8/operations/scripts/verify-release.mjs"],
+  ["scripts/verify-release.test.mjs", "releases/devnet-2026-08-19-r8/operations/scripts/verify-release.test.mjs"],
+]);
 const programId = "2jDqQUZY7yidwa8DTQm6vyFcptFPZ4QhxJn5ePGpgd2p";
 const executableSha256 =
   "effd9de765f2bbb66f3f01ea9bb767304981891ceb30b8ce4f063e326e8e5b03";
@@ -58,7 +63,14 @@ export function verifyRelease(manifestPath = defaultManifest) {
   exact(manifest.program.executableSha256, executableSha256, "executable SHA-256");
   exact(manifest.program.idlSha256, idlSha256, "IDL SHA-256");
 
-  for (const entry of manifest.sourceInputs) verifyEntry(entry, "source input");
+  // Preserve the exact release-era automation while allowing the active bot
+  // configuration and verification tooling to evolve. Program/build inputs and
+  // the CI workflow remain checked in the live tree against the original hashes.
+  for (const entry of manifest.sourceInputs) {
+    const snapshot = operationalSnapshots.get(entry.path);
+    if (snapshot) verifyEntry({ ...entry, path: snapshot }, "historical operational source");
+    else verifyEntry(entry, "source input");
+  }
   verifyEntry(manifest.idl, "IDL");
 
   const binaryPath = join(repositoryRoot, "target/deploy/arch_locker.so");
