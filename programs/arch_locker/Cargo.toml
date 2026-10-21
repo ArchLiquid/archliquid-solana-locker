@@ -39,7 +39,7 @@ anchor-syn = { workspace = true }
 litesvm = "=0.9.1"
 solana-account = "3"
 solana-keypair = "3"
-solana-message = "3"
+solana-message = "4"
 solana-program-option = "3"
 solana-program-pack = "3"
 solana-signer = "3"
