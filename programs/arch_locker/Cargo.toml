@@ -36,7 +36,7 @@ anchor-derive-accounts = { workspace = true }
 anchor-derive-serde = { workspace = true }
 anchor-derive-space = { workspace = true }
 anchor-syn = { workspace = true }
-litesvm = "=0.9.1"
+litesvm = "=0.11.0"
 solana-account = "3"
 solana-keypair = "3"
 solana-message = "3"
